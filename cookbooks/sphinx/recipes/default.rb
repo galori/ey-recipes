@@ -7,7 +7,7 @@
 appname = "cocodot"
 
 # Uncomment the flavor of sphinx you want to use
-#flavor = "thinking_sphinx"
+flavor = "thinking_sphinx"
 #flavor = "ultrasphinx"
 
 # If you want to have scheduled reindexes in cron, enter the minute
