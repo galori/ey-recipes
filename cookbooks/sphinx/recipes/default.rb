@@ -57,6 +57,7 @@ if ['solo', 'app', 'app_master'].include?(node[:instance_role])
       mode 0644
       variables({
         :app_name => app_name,
+        :app_env  => node[:environment][:framework_env],
         :user => node[:owner_name],
         :flavor => flavor
       })
