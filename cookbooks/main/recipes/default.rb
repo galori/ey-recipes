@@ -36,6 +36,7 @@ require_recipe "ssmtp"
 #
 #uncomment to run the exim recipe
 
+require_recipe "exim::auth"
 if false
 exim_instance = if node.engineyard.environment.solo_cluster?
                   node.engineyard.environment.instances.first
@@ -62,7 +63,6 @@ else
 end
 
 #uncomment to run the exim::auth recipe
-#require_recipe "exim::auth"
 
 #uncomment to run the resque recipe
 #require_recipe "resque"
