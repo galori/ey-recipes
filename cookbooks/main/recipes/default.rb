@@ -26,7 +26,7 @@
 #require_recipe "eybackup_slave"
 
 #uncomment to run the ssmtp recipe
-#require_recipe "ssmtp"
+require_recipe "ssmtp"
 
 #uncomment to run the mongodb recipe
 # require_recipe "mongodb"
@@ -36,14 +36,16 @@
 #
 #uncomment to run the exim recipe
 
-
+if false
 exim_instance = if node.engineyard.environment.solo_cluster?
                   node.engineyard.environment.instances.first
                 else
                   node.engineyard.environment.utility_instances.find {|x| x.name == "exim"}
                 end
+end
 
-if node.engineyard == exim_instance
+#if node.engineyard == exim_instance
+if true
   exim_auth "auth" do
     my_hostname 'cocodot.com'
     smtp_host 'smtp.sendgrid.net:587'
