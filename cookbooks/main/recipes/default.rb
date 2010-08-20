@@ -45,10 +45,10 @@ exim_instance = if node.engineyard.environment.solo_cluster?
 
 if node.engineyard == exim_instance
   exim_auth "auth" do
-    my_hostname "cocodot.com"
-    smtp_host "smtp.sendgrid.net:587"
-    username 'gal@cocodot.com"
-    password 'c0c0d0t!"
+    my_hostname 'cocodot.com'
+    smtp_host 'smtp.sendgrid.net:587'
+    username 'gal@cocodot.com'
+    password 'c0c0d0t!'
   end
 else
   Chef::Log.info "exim server is #{exim_instance.id}"
