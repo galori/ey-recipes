@@ -35,13 +35,13 @@
 # require_recipe "sunspot"
 #
 #uncomment to run the exim recipe
-#exim_auth "auth" do
-#  my_hostname "my_hostname.com"
-#  smtp_host "smtp.sendgrid.com"
-#  username "username"
-#  password "password"
-#end
-#require_recipe "exim"
+require_recipe "exim"
+exim_auth "auth" do
+  my_hostname   = "cocodot.com"
+  smtp_username = "gal@cocodot.com"
+  smtp_password = "c0c0d0t!"
+  smtp_host     = "smtp.sendgrid.com"
+end
 
 #uncomment to run the exim::auth recipe
 #require_recipe "exim::auth"
