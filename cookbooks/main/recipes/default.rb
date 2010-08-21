@@ -36,6 +36,7 @@ require_recipe "ssmtp"
 #
 #uncomment to run the exim recipe
 
+if false
 require_recipe "exim::auth"
 if false
 exim_instance = if node.engineyard.environment.solo_cluster?
@@ -60,6 +61,7 @@ else
     rewrite_domain "domain.com"
     from_line_override true
   end
+end
 end
 
 #uncomment to run the exim::auth recipe
