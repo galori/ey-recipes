@@ -1,4 +1,4 @@
 check process job_queue
-  with pidfile /var/run/jobqueue.pid
-  start program = "cd /data/cocodot/current/ && script/job_queue_server start <%= @env %> <%= @pid_file %>;"
-  stop program = "/usr/bin/kill -15 `cat <%= @pid_file %>`"
+  with pidfile <%= @pid_file %>
+  start program = "/bin/sh -c 'cd /data/cocodot/current/ && script/job_queue_server start <%= @env %> <%= @pid_file %>'"
+  stop program = "/bin/kill -15 `cat <%= @pid_file %>`"
