@@ -1,0 +1,6 @@
+set mailserver localhost PORT 25
+#     username '[user]@[domain]' password [pass]
+#     using TLSV1
+#     with TIMEOUT 20 seconds
+set mail-format {from:admin@cocodot.com}
+set alert admin@cocodot.com only on { timeout, nonexist }
