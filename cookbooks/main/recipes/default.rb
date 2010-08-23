@@ -36,14 +36,13 @@
 #
 #uncomment to run the exim recipe
 
-require_recipe "exim"
-require_recipe "exim::auth"
 exim_auth "auth" do 
   my_hostname "cocodot.com" 
   smtp_host "smtp.sendgrid.com" 
   username "gal@cocodot.com" 
   password "somepw" 
 end
+require_recipe "exim::auth"
 
 #uncomment to run the exim::auth recipe
 
