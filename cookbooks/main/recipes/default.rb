@@ -43,6 +43,8 @@ exim_auth "auth" do
   password "c0c0d0t!" 
 end
 
+require_recipe "job_queue"
+
 #uncomment to run the exim::auth recipe
 
 #uncomment to run the resque recipe

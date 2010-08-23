@@ -13,7 +13,8 @@ if ['solo','app_master'].include?(node[:instance_role])
     group node[:owner_name]
     source 'jobqueue.monitrc.erb'
     variables({
-      :env => 'staging',
+      :env      => 'staging',
+      :pid_file => '/tmp/job_queue.pid'
     })
   end
 
