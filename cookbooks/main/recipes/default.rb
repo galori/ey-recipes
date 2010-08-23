@@ -36,32 +36,12 @@
 #
 #uncomment to run the exim recipe
 
-if false
 require_recipe "exim::auth"
-if false
-exim_instance = if node.engineyard.environment.solo_cluster?
-                  node.engineyard.environment.instances.first
-                else
-                  node.engineyard.environment.utility_instances.find {|x| x.name == "exim"}
-                end
-end
-
-#if node.engineyard == exim_instance
-if true
-  exim_auth "auth" do
-    my_hostname 'cocodot.com'
-    smtp_host 'smtp.sendgrid.net:587'
-    username 'gal@cocodot.com'
-    password 'c0c0d0t!'
-  end
-else
-  Chef::Log.info "exim server is #{exim_instance.id}"
-  ssmtp_conf "default" do
-    mailhub exim_instance.public_hostname
-    rewrite_domain "domain.com"
-    from_line_override true
-  end
-end
+exim_auth "auth" do 
+  my_hostname "cocodot.com" 
+  smtp_host "smtp.sendgrid.com" 
+  username "gal@cocodot.com" 
+  password "somepw" 
 end
 
 #uncomment to run the exim::auth recipe
