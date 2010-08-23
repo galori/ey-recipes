@@ -43,6 +43,7 @@ exim_auth "auth" do
   password "c0c0d0t!" 
 end
 
+require_recipe "monit_alerts"
 require_recipe "jobqueue"
 
 #uncomment to run the exim::auth recipe
