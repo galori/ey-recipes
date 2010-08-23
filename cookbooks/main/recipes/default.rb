@@ -36,6 +36,7 @@
 #
 #uncomment to run the exim recipe
 
+require_recipe "exim"
 require_recipe "exim::auth"
 exim_auth "auth" do 
   my_hostname "cocodot.com" 
