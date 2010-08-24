@@ -13,7 +13,7 @@ if ['solo','app_master'].include?(node[:instance_role])
     end
  
     template '/etc/monit.d/jobqueue.monitrc' do
-     owner node[:owner_name]
+      owner node[:owner_name]
       group node[:owner_name]
       source 'jobqueue.monitrc.erb'
       variables({

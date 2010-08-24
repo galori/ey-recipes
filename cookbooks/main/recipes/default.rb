@@ -36,11 +36,21 @@
 #
 #uncomment to run the exim recipe
 
-exim_auth "auth" do 
-  my_hostname "cocodot.com" 
-  smtp_host "smtp.sendgrid.com" 
-  username "gal@cocodot.com" 
-  password "c0c0d0t!" 
+case node['environment']['framework_env']
+when 'production'
+  exim_auth "auth" do 
+    my_hostname "cocodot.com" 
+    smtp_host "smtp.sendgrid.com" 
+    username "ian@cocodot.com" 
+    password "1960burgerboy!" 
+  end
+else
+  exim_auth "auth" do 
+    my_hostname "cocodot.com" 
+    smtp_host "smtp.sendgrid.com" 
+    username "gal@cocodot.com" 
+    password "c0c0d0t!" 
+  end
 end
 
 require_recipe "monit_alerts"
