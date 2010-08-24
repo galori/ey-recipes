@@ -3,7 +3,7 @@
 # Recipe:: default
 #
 
-if node[:instance_role] == 'util' && node[:name].match(/^mongodb_/)
+if ['db_master','solo'].include?(node[:instance_role])
 
   # If using masterslave to replicate from a remote master, this
   # requires a tunnel to be created and running on port 27027
@@ -16,9 +16,9 @@ if node[:instance_role] == 'util' && node[:name].match(/^mongodb_/)
     end
   end
   
-  mongodb_options = "--master" if node[:name].match(/master$/)
-  mongodb_options = "--master --slave --source=#{remote_master}" if node[:name].match(/masterslave$/)
-  mongodb_options = "--slave --source=#{local_master}" if node[:name].match(/slave(\d*)$/)  
+  mongodb_options = "--master"
+  #mongodb_options = "--master --slave --source=#{remote_master}" if node[:name].match(/masterslave$/)
+  #mongodb_options = "--slave --source=#{local_master}" if node[:name].match(/slave(\d*)$/)  
   
   package "dev-db/mongodb-bin" do
     action :install
