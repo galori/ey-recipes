@@ -48,7 +48,7 @@ else
   exim_auth "auth" do 
     my_hostname "cocodot.com" 
     smtp_host "smtp.sendgrid.com" 
-    username "gal@cocodot.com" 
+    username "admin+sendgrid+staging@cocodot.com" 
     password "c0c0d0t!" 
   end
 end
