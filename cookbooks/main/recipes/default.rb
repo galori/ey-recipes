@@ -55,6 +55,7 @@ end
 
 require_recipe "monit_alerts"
 require_recipe "jobqueue"
+require_recipe "nginx"
 
 #uncomment to run the exim::auth recipe
 
