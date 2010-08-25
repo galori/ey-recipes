@@ -36,7 +36,6 @@ require_recipe "mongodb"
 #
 #uncomment to run the exim recipe
 
-if false
 case node['environment']['framework_env']
 when 'production'
   exim_auth "auth" do 
@@ -52,7 +51,6 @@ else
     username "admin+sendgrid+staging@cocodot.com" 
     password "c0c0d0t!" 
   end
-end
 end
 
 #require_recipe "monit_alerts"
