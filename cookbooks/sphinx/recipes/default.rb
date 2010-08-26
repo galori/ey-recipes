@@ -75,19 +75,5 @@ if ['solo', 'app', 'app_master'].include?(node[:instance_role])
         :mem_limit => 78643200 #75 MB
       })
     end
-
-    execute "sphinx config" do
-      command "rake #{flavor}:configure"
-      user node[:owner_name]
-      environment({
-        'HOME' => "/home/#{node[:owner_name]}",
-        'RAILS_ENV' => node[:environment][:framework_env]
-      })
-      cwd "/data/#{app_name}/current"
-    end
-
-    ey_cloud_report "indexing #{flavor}" do
-      message "indexing #{flavor}"
-    end
   end
 end
