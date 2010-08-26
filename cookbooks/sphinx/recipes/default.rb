@@ -89,32 +89,5 @@ if ['solo', 'app', 'app_master'].include?(node[:instance_role])
     ey_cloud_report "indexing #{flavor}" do
       message "indexing #{flavor}"
     end
-
-    execute "#{flavor} index" do
-      command "rake #{flavor}:index"
-      user node[:owner_name]
-      environment({
-        'HOME' => "/home/#{node[:owner_name]}",
-        'RAILS_ENV' => node[:environment][:framework_env]
-      })
-      cwd "/data/#{app_name}/current"
-    end
-
-    execute "monit quit"
-
-    if cron_interval
-      cron "sphinx index" do
-        action  :create
-        minute  "*/#{cron_interval}"
-        hour    '*'
-        day     '*'
-        month   '*'
-        weekday '*'
-        command "cd /data/#{app_name}/current && RAILS_ENV=#{node[:environment][:framework_env]} rake #{flavor}:index"
-        user node[:owner_name]
-      end
-    end
-
   end
-
 end
