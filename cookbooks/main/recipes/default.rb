@@ -31,6 +31,8 @@ require_recipe "sphinx"
 #uncomment to run the mongodb recipe
 require_recipe "mongodb"
 
+require_recipe "xorg"
+
 #uncomment to run the sunspot recipe
 # require_recipe "sunspot"
 #
