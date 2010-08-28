@@ -44,7 +44,7 @@ when 'production'
     my_hostname "cocodot.com" 
     smtp_host "smtp.sendgrid.com" 
     username "ian@cocodot.com" 
-    password "1960burgerboy!" 
+    password "1960burgerboy" 
   end
 else
   exim_auth "auth" do 

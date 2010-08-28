@@ -24,7 +24,7 @@ if ['db_master','solo'].include?(node[:instance_role])
     action :install
   end
   
-  directory '/data/mongodb/data' do
+  directory '/db/mongodb/data' do
     owner 'mongodb'
     group 'mongodb'
     mode  '0755'
@@ -32,7 +32,7 @@ if ['db_master','solo'].include?(node[:instance_role])
     recursive true
   end
 
-  directory '/data/mongodb/log' do
+  directory '/db/mongodb/log' do
     owner 'mongodb'
     group 'mongodb'
     mode '0755'
