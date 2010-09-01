@@ -24,4 +24,8 @@ if ['solo','app_master'].include?(node[:instance_role])
 
     execute "monit quit"
   end
+else
+  #Since /etc/monit.d is peristed on /data lets delete this config on servers we don't want it on
+  execute "sh -c '/bin/rm /etc/monit.d/jobqueue.monitrc; true'"
+  execute "sh -c '/bin/rm /etc/monit.d/jobqueue.monitrc*; true'"
 end
