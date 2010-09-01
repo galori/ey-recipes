@@ -54,7 +54,7 @@ else
     smtp_host "smtp.sendgrid.com" 
     username "admin+sendgrid+staging@cocodot.com" 
     password "c0c0d0t!" 
-word"
+  end
 end
 
 #require_recipe "monit_alerts"
