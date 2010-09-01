@@ -37,8 +37,7 @@ require_recipe "xorg"
 # require_recipe "sunspot"
 #
 #uncomment to run the exim recipe
-#end
-#end
+<<<<<<< HEAD
 
 case node['environment']['framework_env']
 when 'production'
@@ -54,13 +53,22 @@ else
     smtp_host "smtp.sendgrid.com" 
     username "admin+sendgrid+staging@cocodot.com" 
     password "c0c0d0t!" 
-word"
+  end
 end
 
 #require_recipe "monit_alerts"
 require_recipe "jobqueue"
 require_recipe "nginx"
 require_recipe "bash_prompt"
+=======
+exim_auth "auth" do
+  my_hostname "my_hostname.com"
+  smtp_host "smtp.sendgrid.com"
+  username "username"
+  password "password"
+end
+#require_recipe "exim"
+>>>>>>> d033f919f5429427bd3f01306a661ad384b8d9db
 
 #uncomment to run the exim::auth recipe
 
