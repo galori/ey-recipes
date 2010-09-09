@@ -18,7 +18,8 @@ if ['solo','app_master'].include?(node[:instance_role])
       source 'jobqueue.monitrc.erb'
       variables({
         :env      => node['environment']['framework_env'],
-        :pid_file => '/tmp/job_queue.pid'
+        :pid_file => '/tmp/job_queue.pid',
+        :xvfb_pid_file => '/tmp/xvfb.pid'
       })
     end
 
