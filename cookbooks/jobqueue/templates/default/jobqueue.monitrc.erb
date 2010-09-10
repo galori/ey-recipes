@@ -1,9 +1,9 @@
 check process job_queue
   with pidfile <%= @pid_file %>
   start program = "/bin/sh -c 'cd /data/cocodot/current/ && sudo -u deploy script/job_queue_server start <%= @env %> <%= @pid_file %>'"
-  stop program  = "/bin/sh -c '/bin/kill -15 `cat <%= @pid_file %>`'"
+  stop program  = "/bin/sh -c 'cd /data/cocodot/current/ && sudo -u deploy script/job_queue_server stop <%= @env %> <%= @pid_file %>'"
 
 check process xvfb
   with pidfile <%= @xvfb_pid_file %>
   start program = "/bin/sh -c 'cd /data/cocodot/current/ && sudo -u deploy script/xvfb_server start <%= @env %> <%= @xvfb_pid_file %>'"
-  stop program  = "/bin/sh -c '/bin/kill -15 `cat <%= @pid_file %>`'"
+  stop program  = "/bin/sh -c 'cd /data/cocodot/current/ && sudo -u deploy script/xvfb_server stop <%= @env %> <%= @xvfb_pid_file %>'"
