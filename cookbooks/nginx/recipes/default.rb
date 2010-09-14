@@ -1,6 +1,6 @@
 # add customization to the nginx configs
 
-if ['solo','app_master'].include?(node[:instance_role])
+if ['solo','app_master','app'].include?(node[:instance_role])
 
 
   ##############################################
