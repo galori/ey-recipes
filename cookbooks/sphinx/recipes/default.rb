@@ -75,5 +75,19 @@ if ['solo', 'app', 'app_master'].include?(node[:instance_role])
         :mem_limit => 78643200 #75 MB
       })
     end
+
+    if cron_interval
+      cron "sphinx index" do
+        action  :create
+        minute  "*/#{cron_interval}"
+        hour    '*'
+        day     '*'
+        month   '*'
+        weekday '*'
+        command "cd /data/#{app_name}/current && RAILS_ENV=#{node[:environment][:framework_env]} rake #{flavor}:index"
+        user node[:owner_name]
+      end
+    end
+    
   end
 end
