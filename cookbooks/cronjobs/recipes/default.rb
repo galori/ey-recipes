@@ -35,6 +35,12 @@ if ['solo','app_master'].include?(node[:instance_role])
     command "cd /data/cocodot/current && script/runner 'Category.rebuild!' > /data/cocodot/shared/cron_logs/category_rebuild.log"
   end
 
+  cron "Mark & Purge Bounces" do
+    minute "*/30"
+    user "deploy"
+    command "cd /data/cocodot/current && rake cocodot:mark_and_purge_bounces > ~/cronlogs/mark_and_purge_bounces.log"
+  end
+
   if node['environment']['framework_env'] == 'production'
     cron "Recurring Biller" do
       hour "1"
