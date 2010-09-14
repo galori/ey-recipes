@@ -26,7 +26,7 @@ if ['solo','app_master'].include?(node[:instance_role])
   cron "Update Accessible Lookup" do
     hour "*/1"
     user "deploy"
-    command "sh -c /'data/cocodot/current && script/runner lib/cron/update_accessible_lookup.rb > /data/cocodot/shared/cron_logs/update_accessible_lookup.log'"
+    command "sh -c 'cd data/cocodot/current && script/runner lib/cron/update_accessible_lookup.rb > /data/cocodot/shared/cron_logs/update_accessible_lookup.log'"
   end
 
   cron "Category Rebuild" do
