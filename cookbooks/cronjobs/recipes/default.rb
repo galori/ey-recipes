@@ -24,12 +24,14 @@ if ['solo','app_master'].include?(node[:instance_role])
   end
 
   cron "Update Accessible Lookup" do
+    minute "0"
     hour "*/1"
     user "deploy"
-    command "sh -c 'cd data/cocodot/current && script/runner lib/cron/update_accessible_lookup.rb > /data/cocodot/shared/cron_logs/update_accessible_lookup.log'"
+    command "cd /data/cocodot/current && script/runner lib/cron/update_accessible_lookup.rb > /data/cocodot/shared/cron_logs/update_accessible_lookup.log"
   end
 
   cron "Category Rebuild" do
+    minute "0"
     hour "*/1"
     user "deploy"
     command "cd /data/cocodot/current && script/runner 'Category.rebuild!' > /data/cocodot/shared/cron_logs/category_rebuild.log"
@@ -38,15 +40,16 @@ if ['solo','app_master'].include?(node[:instance_role])
   cron "Mark & Purge Bounces" do
     minute "*/30"
     user "deploy"
-    command "cd /data/cocodot/current && rake cocodot:mark_and_purge_bounces > ~/cronlogs/mark_and_purge_bounces.log"
+    command "cd /data/cocodot/current && rake cocodot:mark_and_purge_bounces > /data/cocodot/shared/cron_logs/mark_and_purge_bounces.log"
   end
 
   if node['environment']['framework_env'] == 'production'
     cron "Recurring Biller" do
+      minute "0"
       hour "1"
       day  "*/1"
       user "deploy"
-      command "echo recurringbiller"
+      command "echo recurringbiller > /data/cocodot/shared/cron_logs/recurring_biller.log"
       #command "cd /data/cocodot/current && ruby script/runner script/recurring_biller > /data/cocodot/shared/cron_logs/recurring_biller.log"
     end
   end

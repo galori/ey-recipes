@@ -84,7 +84,7 @@ if ['solo', 'app', 'app_master'].include?(node[:instance_role])
         day     '*'
         month   '*'
         weekday '*'
-        command "cd /data/#{app_name}/current && RAILS_ENV=#{node[:environment][:framework_env]} rake #{flavor}:index"
+        command "cd /data/#{app_name}/current && RAILS_ENV=#{node[:environment][:framework_env]} rake #{flavor}:index > /data/cocodot/shared/cron_logs/sphinx_reindex.log"
         user node[:owner_name]
       end
     end
