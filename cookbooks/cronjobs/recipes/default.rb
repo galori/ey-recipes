@@ -47,10 +47,17 @@ if ['solo','app_master'].include?(node[:instance_role])
     cron "Recurring Biller" do
       minute "0"
       hour "1"
-      day  "*/1"
+      day  "*"
       user "deploy"
       command "echo recurringbiller > /data/cocodot/shared/cron_logs/recurring_biller.log"
       #command "cd /data/cocodot/current && ruby script/runner script/recurring_biller > /data/cocodot/shared/cron_logs/recurring_biller.log"
+    end
+
+    cron "Daily Mailer" do
+      user "deploy"
+      minute "0"
+      hour "0"
+      command "cd /data/cocodot/current && ruby script/runner script/daily_mailer > /data/cocodot/shared/cron_logs/daily_mailer.log"
     end
   end
 end
