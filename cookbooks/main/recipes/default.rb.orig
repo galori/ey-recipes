@@ -14,6 +14,7 @@
 # require_recipe "mbari-ruby"
 
 # uncomment to turn on thinking sphinx/ultra sphinx. Remember to edit cookbooks/sphinx/recipes/default.rb first!
+require_recipe 'cronjobs'
 require_recipe "sphinx"
 
 #uncomment to turn on memcached
@@ -37,38 +38,29 @@ require_recipe "xorg"
 # require_recipe "sunspot"
 #
 #uncomment to run the exim recipe
-<<<<<<< HEAD
+#end
+#end
 
-case node['environment']['framework_env']
-when 'production'
+<<<<<<< HEAD
+exim_auth "auth" do 
+  my_hostname "cocodot.com" 
+  smtp_host "smtp.sendgrid.com" 
+  username "ian@cocodot.com" 
+  password "1960burgerboy" 
+end
+=======
   exim_auth "auth" do 
     my_hostname "cocodot.com" 
     smtp_host "smtp.sendgrid.com" 
     username "ian@cocodot.com" 
     password "1960burgerboy" 
   end
-else
-  exim_auth "auth" do 
-    my_hostname "cocodot.com" 
-    smtp_host "smtp.sendgrid.com" 
-    username "admin+sendgrid+staging@cocodot.com" 
-    password "c0c0d0t!" 
-  end
-end
+>>>>>>> Use a single sendgrid account for everything
 
 #require_recipe "monit_alerts"
 require_recipe "jobqueue"
 require_recipe "nginx"
 require_recipe "bash_prompt"
-=======
-exim_auth "auth" do
-  my_hostname "my_hostname.com"
-  smtp_host "smtp.sendgrid.com"
-  username "username"
-  password "password"
-end
-#require_recipe "exim"
->>>>>>> d033f919f5429427bd3f01306a661ad384b8d9db
 
 #uncomment to run the exim::auth recipe
 
