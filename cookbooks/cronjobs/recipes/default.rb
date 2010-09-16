@@ -38,7 +38,7 @@ if ['solo','app_master'].include?(node[:instance_role])
   end
   
   cron "Purge Stale Products and Address Books" do
-    user deploy
+    user "deploy"
     minute "0"
     hour "1"
     command "cd /data/cocodot/current && rake cocodot:purge_stale_products_and_address_books > /data/cocodot/shared/cron_logs/purge_stale_products_and_address_books.log"
