@@ -37,26 +37,25 @@ if ['solo','app_master'].include?(node[:instance_role])
     command "cd /data/cocodot/current && script/runner 'Category.rebuild!' > /data/cocodot/shared/cron_logs/category_rebuild.log"
   end
 
-  cron "Mark & Purge Bounces" do
-    minute "*/30"
-    user "deploy"
-    command "cd /data/cocodot/current && rake cocodot:mark_and_purge_bounces > /data/cocodot/shared/cron_logs/mark_and_purge_bounces.log"
-  end
-
   if node['environment']['framework_env'] == 'production'
+    cron "Mark & Purge Bounces" do
+      minute "*/30"
+      user "deploy"
+      command "cd /data/cocodot/current && rake cocodot:mark_and_purge_bounces > /data/cocodot/shared/cron_logs/mark_and_purge_bounces.log"
+    end
+     
     cron "Recurring Biller" do
       minute "0"
       hour "1"
       day  "*"
       user "deploy"
-      command "echo recurringbiller > /data/cocodot/shared/cron_logs/recurring_biller.log"
-      #command "cd /data/cocodot/current && ruby script/runner script/recurring_biller > /data/cocodot/shared/cron_logs/recurring_biller.log"
+      command "cd /data/cocodot/current && ruby script/runner script/recurring_biller > /data/cocodot/shared/cron_logs/recurring_biller.log"
     end
 
     cron "Daily Mailer" do
       user "deploy"
       minute "0"
-      hour "0"
+      hour "1"
       command "cd /data/cocodot/current && ruby script/runner script/daily_mailer > /data/cocodot/shared/cron_logs/daily_mailer.log"
     end
   end
