@@ -36,6 +36,13 @@ if ['solo','app_master'].include?(node[:instance_role])
     user "deploy"
     command "cd /data/cocodot/current && script/runner 'Category.rebuild!' > /data/cocodot/shared/cron_logs/category_rebuild.log"
   end
+  
+  cron "Purge Stale Products and Address Books" do
+    user deploy
+    minute "0"
+    hour "1"
+    command "cd /data/cocodot/current && rake cocodot:purge_stale_products_and_address_books > /data/cocodot/shared/cron_logs/purge_stale_products_and_address_books.log"
+  end
 
   if node['environment']['framework_env'] == 'production'
     cron "Mark & Purge Bounces" do
