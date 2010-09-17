@@ -14,6 +14,7 @@
 # require_recipe "mbari-ruby"
 
 # uncomment to turn on thinking sphinx/ultra sphinx. Remember to edit cookbooks/sphinx/recipes/default.rb first!
+require_recipe 'tune_unicorn'
 require_recipe 'cronjobs'
 require_recipe "sphinx"
 
