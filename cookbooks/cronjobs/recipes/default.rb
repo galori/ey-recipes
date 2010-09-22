@@ -5,7 +5,11 @@
 
 require 'etc'
 
-if ['solo','app_master'].include?(node[:instance_role])
+if ['util'].include?(node[:instance_role])
+  execute "Create cronlogs directory" do
+    command "mkdir -p /data/cocodot/shared/cron_logs/"
+  end
+    
   update_file "/tmp/cron_update_header" do
     action :rewrite
 
