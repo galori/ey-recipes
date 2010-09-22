@@ -10,11 +10,11 @@ if ['db_master','solo'].include?(node[:instance_role])
   remote_master     = 'localhost:27027'
   local_master      = 'localhost'
   
-  node[:utility_instances].each do |util_instance|
-    if util_instance[:name].match(/(master|masterslave)$/)
-      local_master = util_instance[:hostname]
-    end
-  end
+  #node[:utility_instances].each do |util_instance|
+  #  if util_instance[:name].match(/(master|masterslave)$/)
+  #    local_master = util_instance[:hostname]
+  #  end
+  #end
   
   mongodb_options = "--master"
   #mongodb_options = "--master --slave --source=#{remote_master}" if node[:name].match(/masterslave$/)
