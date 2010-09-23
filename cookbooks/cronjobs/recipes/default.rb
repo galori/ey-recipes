@@ -7,7 +7,7 @@ require 'etc'
 
 if ['util'].include?(node[:instance_role])
   execute "Create cronlogs directory" do
-    command "mkdir -p /data/cocodot/shared/cron_logs/"
+    command "sh -c 'mkdir -p /data/cocodot/shared/cron_logs'"
   end
     
   update_file "/tmp/cron_update_header" do
