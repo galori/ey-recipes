@@ -25,13 +25,11 @@ if ['solo','app_master','app','util'].include?(node[:instance_role])
     command "sudo -u deploy sh -c 'rm -Rf #{ey_data_dir}; git clone --depth 1 git@cocodot.unfuddle.com:cocodot/ey-data.git #{ey_data_dir} && cd #{ey_data_dir} && git checkout -b #{branch} origin/#{branch}'"
   end
   
-  #Link the configs to the shared config dir
-  shared_config_dir     = "#{ey_data_dir}/shared_config"
-  app_shared_config_dir = "/data/cocodot/shared/config"
-  Dir.open(shared_config_dir).each do |f|
-    next if f =~ /^\./
-    execute "Linking #{f}" do
-      command "ln -sf '#{shared_config_dir}/#{f}' '#{app_shared_config_dir}/#{f}'"
-    end
+  execute "Ensure cocodot shared config dir" do
+    command "mkdir -p /data/cocodot/shared/config"
+  end
+  
+  execute "Symlinking ey-data configs" do
+    command "ln -sf #{ey_data_dir}/shared_config/* /data/cocodot/shared/config/"
   end
 end
