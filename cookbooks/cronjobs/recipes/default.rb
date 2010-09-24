@@ -5,7 +5,7 @@
 
 require 'etc'
 
-if ['util'].include?(node[:instance_role])
+if ['app_master'].include?(node[:instance_role])
   execute "Create cronlogs directory" do
     command "sh -c 'mkdir -p /data/cocodot/shared/cron_logs'"
   end
