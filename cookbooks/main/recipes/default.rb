@@ -45,12 +45,22 @@ require_recipe "xorg"
 #end
 #end
 
-exim_auth "auth" do 
-  my_hostname "cocodot.com" 
-  smtp_host "smtp.sendgrid.com" 
-  username "ian@cocodot.com" 
-  password "1960burgerboy" 
+if node['environment']['framework_env'] == 'production'
+  exim_auth "auth" do 
+    my_hostname "cocodot.com" 
+    smtp_host "smtp.sendgrid.com" 
+    username "ian@cocodot.com" 
+    password "1960burgerboy" 
+  end
+else
+   exim_auth "auth" do 
+    my_hostname "cocodot.com" 
+    smtp_host "smtp.sendgrid.com" 
+    username "gal@cocodot.com" 
+    password "c0c0d0t!" 
+  end
 end
+ 
 
 #require_recipe "monit_alerts"
 require_recipe "jobqueue"
