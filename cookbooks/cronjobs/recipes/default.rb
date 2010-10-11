@@ -6,9 +6,9 @@
 require 'etc'
 
 if ['app','app_master'].include?(node[:instance_role])
-  execute "Deleting deploy crontab on app servers" do
-    command "sudo -u deploy crontab -l"
-  end
+  #execute "Deleting deploy crontab on app servers" do
+  #  #command "sudo -u deploy crontab -r;"
+  #end
 end
 
 if ['util','solo'].include?(node[:instance_role])
