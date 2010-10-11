@@ -5,7 +5,13 @@
 
 require 'etc'
 
-if ['app_master'].include?(node[:instance_role])
+if ['app','app_master'].include?(node[:instance_role])
+  execute "Deleting deploy crontab on app servers" do
+    command "sudo -u deploy crontab -l"
+  end
+end
+
+if ['util','solo'].include?(node[:instance_role])
   execute "Create cronlogs directory" do
     command "sh -c 'mkdir -p /data/cocodot/shared/cron_logs'"
   end

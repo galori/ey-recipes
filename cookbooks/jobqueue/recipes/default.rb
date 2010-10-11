@@ -5,7 +5,7 @@
 
 require 'etc'
 
-if ['solo','app_master','app'].include?(node[:instance_role])
+if ['solo','util'].include?(node[:instance_role])
   # Install the JobQueue monit file.
   run_for_app('cocodot') do
     ey_cloud_report "JobQueue" do
