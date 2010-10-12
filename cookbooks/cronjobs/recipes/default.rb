@@ -79,7 +79,7 @@ if ['util','solo'].include?(node[:instance_role])
     cron "Non-Sub Initial Blast" do
       user "deploy"
       minute "0"
-      hour "1"
+      hour "*"
       command "cd /data/cocodot/current && nice -n 20 rake cocodot:non_sub_initial_blast > /data/cocodot/shared/cron_logs/non_sub_initial_blast.log"
     end
   end
