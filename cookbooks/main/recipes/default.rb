@@ -49,15 +49,15 @@ if node['environment']['framework_env'] == 'production'
   exim_auth "auth" do 
     my_hostname "cocodot.com" 
     smtp_host "smtp.sendgrid.com" 
-    username "ian@cocodot.com" 
+    username "admin+sendgrid+production@cocodot.com" 
     password "1960burgerboy" 
   end
 else
    exim_auth "auth" do 
     my_hostname "cocodot.com" 
     smtp_host "smtp.sendgrid.com" 
-    username "gal@cocodot.com" 
-    password "c0c0d0t!" 
+    username "admin+sendgrid+production@cocodot.com" 
+    password "c0c0d0t!"
   end
 end
  
