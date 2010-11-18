@@ -15,7 +15,6 @@
 
 # uncomment to turn on thinking sphinx/ultra sphinx. Remember to edit cookbooks/sphinx/recipes/default.rb first!
 
-require_recipe 'public_dna'
 require_recipe 'ey-data' #Provides config data and files for the server via git
 
 require_recipe 'tune_unicorn'

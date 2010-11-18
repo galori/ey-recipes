@@ -14,10 +14,6 @@
 # require_recipe "mbari-ruby"
 
 # uncomment to turn on thinking sphinx/ultra sphinx. Remember to edit cookbooks/sphinx/recipes/default.rb first!
-
-require_recipe 'public_dna'
-require_recipe 'ey-data' #Provides config data and files for the server via git
-
 require_recipe 'tune_unicorn'
 require_recipe 'cronjobs'
 require_recipe "sphinx"
@@ -58,7 +54,7 @@ else
     my_hostname "cocodot.com" 
     smtp_host "smtp.sendgrid.com" 
     username "admin+sendgrid+test@cocodot.com" 
-    password "c0c0d0t!"
+    password "1960burgerboy" 
   end
 end
  
