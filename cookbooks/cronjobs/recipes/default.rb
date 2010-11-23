@@ -55,6 +55,13 @@ if ['util','solo'].include?(node[:instance_role])
   end
 
   if node['environment']['framework_env'] == 'production'
+    cron "Minidump" do
+      minute "0"
+      hour   "2"
+      user "deploy"
+      command "cd /data/cocodot/current && nice -n 20 script/runner script/minidump 2>&1 > /data/cocodot/shared/cron_logs/minidump.log"
+    end
+    
     cron "Mark & Purge Bounces" do
       minute "*/30"
       user "deploy"

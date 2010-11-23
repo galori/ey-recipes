@@ -15,23 +15,11 @@
 
 # uncomment to turn on thinking sphinx/ultra sphinx. Remember to edit cookbooks/sphinx/recipes/default.rb first!
 
-require_recipe 'public_dna'
 require_recipe 'ey-data' #Provides config data and files for the server via git
 
 require_recipe 'tune_unicorn'
 require_recipe 'cronjobs'
 require_recipe "sphinx"
-
-
-if ['solo','app_master','app','util'].include?(node[:instance_role])
-  enable_package 'net-misc/memcached' do
-     version '1.4.5'
-  end
-  package 'net-misc/memcached' do
-     version '1.4.5'
-     action :install
-  end
-end
 
 #uncomment to turn on memcached
 #require_recipe "memcached"
@@ -69,7 +57,11 @@ else
     my_hostname "cocodot.com" 
     smtp_host "smtp.sendgrid.com" 
     username "admin+sendgrid+test@cocodot.com" 
+<<<<<<< HEAD
+    password "1960burgerboy" 
+=======
     password "c0c0d0t!"
+>>>>>>> hotfix
   end
 end
  

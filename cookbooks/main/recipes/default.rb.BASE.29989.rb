@@ -14,24 +14,9 @@
 # require_recipe "mbari-ruby"
 
 # uncomment to turn on thinking sphinx/ultra sphinx. Remember to edit cookbooks/sphinx/recipes/default.rb first!
-
-require_recipe 'public_dna'
-require_recipe 'ey-data' #Provides config data and files for the server via git
-
 require_recipe 'tune_unicorn'
 require_recipe 'cronjobs'
 require_recipe "sphinx"
-
-
-if ['solo','app_master','app','util'].include?(node[:instance_role])
-  enable_package 'net-misc/memcached' do
-     version '1.4.5'
-  end
-  package 'net-misc/memcached' do
-     version '1.4.5'
-     action :install
-  end
-end
 
 #uncomment to turn on memcached
 #require_recipe "memcached"
@@ -57,22 +42,12 @@ require_recipe "xorg"
 #end
 #end
 
-if node['environment']['framework_env'] == 'production'
-  exim_auth "auth" do 
-    my_hostname "cocodot.com" 
-    smtp_host "smtp.sendgrid.com" 
-    username "admin+sendgrid+production@cocodot.com" 
-    password "1960burgerboy" 
-  end
-else
-   exim_auth "auth" do 
-    my_hostname "cocodot.com" 
-    smtp_host "smtp.sendgrid.com" 
-    username "admin+sendgrid+test@cocodot.com" 
-    password "c0c0d0t!"
-  end
+exim_auth "auth" do 
+  my_hostname "cocodot.com" 
+  smtp_host "smtp.sendgrid.com" 
+  username "ian@cocodot.com" 
+  password "1960burgerboy" 
 end
- 
 
 #require_recipe "monit_alerts"
 require_recipe "jobqueue"
