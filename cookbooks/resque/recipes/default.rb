@@ -18,7 +18,7 @@ if ['solo', 'util'].include?(node[:instance_role])
     end
   
 
-    node[:applications].each do |app, data|
+    ['cocodot'].each do |app, data|
       template "/etc/monit.d/resque_#{app}.monitrc" do 
       owner 'root' 
       group 'root' 
