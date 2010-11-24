@@ -6,13 +6,19 @@
 require 'etc'
 
 if ['solo','app_master','app'].include?(node[:instance_role])
-  execute "sh -c 'sed -e \"s/^worker_processes.*$/worker_processes 2/\" /data/publisher/shared/config/unicorn.rb > /data/publisher/shared/config/unicorn_custom.rb'"
-  execute "sh -c 'sed -e \"s/^worker_processes.*$/worker_processes 3/\" /data/cocodot/shared/config/unicorn.rb > /data/cocodot/shared/config/unicorn_custom.rb'"
-
-  ['/data/cocodot/shared/config','/data/publisher/shared/config'].each do |env_dir|
+  %w(cocodot publisher).each do |app_name|
+    env_dir = "/data/#{app_name}/shared/config"
+    worker_processes = app_name == 'cocodot' ? 3 : 2
+     
     template "#{env_dir}/unicorn_custom.rb" do
-
+      owner node[:owner_name]
+      group node[:owner_name]
+      source 'unicorn_config.rb.erb'
+      variables({
+        :worker_processes => worker_processes
+      })
     end
+    
     template "#{env_dir}/env.custom" do
       owner node[:owner_name]
       group node[:owner_name]
