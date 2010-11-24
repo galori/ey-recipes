@@ -22,6 +22,17 @@ require_recipe 'tune_unicorn'
 require_recipe 'cronjobs'
 require_recipe "sphinx"
 
+
+if ['solo','app_master','app','util'].include?(node[:instance_role])
+  enable_package 'net-misc/memcached' do
+     version '1.4.5'
+  end
+  package 'net-misc/memcached' do
+     version '1.4.5'
+     action :install
+  end
+end
+
 #uncomment to turn on memcached
 #require_recipe "memcached"
 
