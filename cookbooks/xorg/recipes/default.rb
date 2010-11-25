@@ -5,7 +5,7 @@
 
 require 'etc'
 
-if ['app','app_master','solo','util'].include?(node[:instance_role])
+if ['solo','util'].include?(node[:instance_role])
   run_for_app('cocodot') do
     ey_cloud_report "xorg" do
       message "Installing X packages for flash"
