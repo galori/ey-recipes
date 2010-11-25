@@ -61,6 +61,13 @@ if ['util','solo'].include?(node[:instance_role])
       user "deploy"
       command "cd /data/cocodot/current && nice -n 20 script/runner script/minidump 2>&1 > /data/cocodot/shared/cron_logs/minidump.log"
     end
+
+    cron "Shipping notifications" do
+      minute "40"
+      hour   "*"
+      user "deploy"
+      command "cd /data/cocodot/current && nice -n 20 rake cocodot:deliver_shipping_notifications > /data/cocodot/shared/cron_logs/shipping_notifications.log"
+    end
     
     cron "Mark & Purge Bounces" do
       minute "*/30"

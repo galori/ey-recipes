@@ -15,6 +15,7 @@ if ['solo','app_master','app'].include?(node[:instance_role])
       group node[:owner_name]
       source 'unicorn_config.rb.erb'
       variables({
+        :app_name => app_name,
         :worker_processes => worker_processes
       })
     end
