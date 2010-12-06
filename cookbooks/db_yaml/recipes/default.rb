@@ -12,14 +12,15 @@ if ['app_master','app', 'util','solo'].include?(node[:instance_role])
       mcap = 524288000   #500MB
     end
 
-    db_yml['database'] = 'cocodot'
-    
     db_yml.each do |env,props|
+      props['database'] = 'cocodot'
+       
       props['mongo'] = {}
       props['mongo']['database'] = 'cocodot' 
       props['mongo']['capsize']  = mcap
       props['mongo']['host']     = props['host']
     end 
+
     File.open(db_yml_path, 'w') do |f|
       f.write YAML.dump(db_yml)
     end          

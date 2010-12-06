@@ -59,14 +59,14 @@ end
 ### !!IMPORTANT!!! Uncomment this when using bundler!
 ##
 
-#before_exec do |server|
-#  paths = (ENV["PATH"] || "").split(File::PATH_SEPARATOR) 
-#  paths.unshift "#{shared_bundler_gems_path}/bin"
-#  ENV["PATH"] = paths.uniq.join(File::PATH_SEPARATOR)
-#
-#  ENV['GEM_HOME'] = ENV['GEM_PATH'] = shared_bundler_gems_path
-#  ENV['BUNDLE_GEMFILE'] = "#{current_path}/Gemfile"
-#end
+before_exec do |server|
+  paths = (ENV["PATH"] || "").split(File::PATH_SEPARATOR) 
+  paths.unshift "#{shared_bundler_gems_path}/bin"
+  ENV["PATH"] = paths.uniq.join(File::PATH_SEPARATOR)
+
+  ENV['GEM_HOME'] = ENV['GEM_PATH'] = shared_bundler_gems_path
+  ENV['BUNDLE_GEMFILE'] = "#{current_path}/Gemfile"
+end
 
 after_fork do |server, worker|
   worker_pid = File.join(File.dirname(server.config[:pid]), "unicorn_worker_<%= @app_name %>_#{worker.nr}.pid")
