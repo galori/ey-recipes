@@ -82,10 +82,10 @@ require_recipe "bash_prompt"
 
 #uncomment to run the exim::auth recipe
 
+require_recipe "redis"
 require_recipe "resque"
 
 #uncomment to run the redis recipe
-#require_recipe "redis"
 
 #require_recipe "logrotate"
 #
