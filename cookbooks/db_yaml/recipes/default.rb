@@ -13,6 +13,7 @@ if ['app_master','app', 'util','solo'].include?(node[:instance_role])
     end
 
     db_yml.each do |env,props|
+      props['adapter']  = 'mysql2'
       props['database'] = 'cocodot'
        
       props['mongo'] = {}
