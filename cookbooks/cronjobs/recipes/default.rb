@@ -22,6 +22,7 @@ if ['util','solo'].include?(node[:instance_role])
     body <<-CRON
       RAILS_ENV="#{node['environment']['framework_env']}"
       RACK_ENV="#{node['environment']['framework_env']}"
+      MAILTO="cocodot-dev@googlegroups.com"
     CRON
   end
 
