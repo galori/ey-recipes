@@ -81,7 +81,7 @@ if ['util','solo'].include?(node[:instance_role])
         minute "0"
         hour   "1"
         user "deploy"
-        command "cd /data/cocodot/current && nice -n 20 rake s3:copy TO=staging"
+        command "cd /data/cocodot/current && nice -n 20 rake s3:copy TO=staging > /data/cocodot/shared/cron_logs/s3_sync.log"
       end
     end
      
