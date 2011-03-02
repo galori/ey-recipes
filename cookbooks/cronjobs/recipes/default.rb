@@ -76,12 +76,14 @@ if ['util','solo'].include?(node[:instance_role])
       command "cd /data/cocodot/current && nice -n 20 rake cocodot:mark_and_purge_bounces > /data/cocodot/shared/cron_logs/mark_and_purge_bounces.log"
     end
 
-#    cron "Sync S3" do
-#      minute "0"
-#      hour   "1"
-#      user "deploy"
-#      command "cd /data/cocodot/current && nice -n 20 rake s3:copy TO=staging"
-#    end
+    if node['environment']['framework_env'] == 'production'
+      cron "Sync S3" do
+        minute "0"
+        hour   "1"
+        user "deploy"
+        command "cd /data/cocodot/current && nice -n 20 rake s3:copy TO=staging"
+      end
+    end
      
     cron "Recurring Biller" do
       minute "0"
