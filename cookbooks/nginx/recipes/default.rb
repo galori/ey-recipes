@@ -41,13 +41,13 @@ if ['solo','app_master','app'].include?(node[:instance_role])
   ## Add large_client_header_buffers 8 8k to nginx.conf ##
   ########################################################
   ey_cloud_report "nginx" do
-    message "Adding large_client_header_buffers 8 8k to nginx.conf"
+    message "Adding large_client_header_buffers 10 10k to nginx.conf"
   end
 
   begin
     nginx_conf_path = '/etc/nginx/nginx.conf'
     conf = open(nginx_conf_path).read
-    if !conf.include?('client_max_body_size')
+    if !conf.include?('large_client_header_buffers')
       directive = "  large_client_header_buffers 8 8k;"
       lines = conf.split("\n")
       insert_after = lines.index "http {"
