@@ -7,14 +7,22 @@ if ['solo','app_master','app'].include?(node[:instance_role])
   ## ADD Mime Types to the nginx default list ##
   ##############################################
   ey_cloud_report "nginx" do
-      message "Adding mime types to nginx config"
+    message "Adding mime types to nginx config"
   end
   
   template '/etc/nginx/mime.types' do
     source 'mime_types.erb'
   end
 
-  execute 'add client_max_body_size to 10mb' do
+
+  ####################################################
+  ## Add client_max_body_size to 10mb to nginx.conf ##
+  ####################################################
+  ey_cloud_report "nginx" do
+    message "Adding client_max_body_size to 10mb to nginx.conf"
+  end
+
+  begin
     nginx_conf_path = '/etc/nginx/nginx.conf'
     conf = open(nginx_conf_path).read
     if !conf.include?('client_max_body_size')
@@ -28,11 +36,19 @@ if ['solo','app_master','app'].include?(node[:instance_role])
     end
   end
 
-  execute 'add large_client_header_buffers to 8 8k' do
+
+  ########################################################
+  ## Add large_client_header_buffers 8 8k to nginx.conf ##
+  ########################################################
+  ey_cloud_report "nginx" do
+    message "Adding large_client_header_buffers 8 8k to nginx.conf"
+  end
+
+  begin
     nginx_conf_path = '/etc/nginx/nginx.conf'
     conf = open(nginx_conf_path).read
     if !conf.include?('client_max_body_size')
-      directive = "  large_client_header_buffers  8 8k;"
+      directive = "  large_client_header_buffers 8 8k;"
       lines = conf.split("\n")
       insert_after = lines.index "http {"
       lines.insert(insert_after+1,directive)
