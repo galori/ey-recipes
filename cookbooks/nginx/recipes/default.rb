@@ -41,7 +41,7 @@ if ['solo','app_master','app'].include?(node[:instance_role])
   ## Add large_client_header_buffers 8 8k to nginx.conf ##
   ########################################################
   ey_cloud_report "nginx" do
-    message "Adding large_client_header_buffers 10 10k to nginx.conf"
+    message "Adding large_client_header_buffers 8 8k to nginx.conf"
   end
 
   begin
